@@ -1,0 +1,1 @@
+/api/\* http://todolist-demo-jane.ap-southeast-2.elasticbeanstalk.com/api/:splat 200
