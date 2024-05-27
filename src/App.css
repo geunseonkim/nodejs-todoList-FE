@@ -23,11 +23,13 @@ body{
   padding: 10px;
   width:100%;
   border: 1px solid lightblue;
-  
-  
 }
 .input-box:focus{
   outline: none;
+}
+button{
+  background-color: lightblue;
+  color: white;
 }
 .button-add{
   height: 40px;
@@ -51,9 +53,38 @@ body{
   background-color: lightblue;
   color: #ffffff;
 }
-
 /* done and checked */
 .data-complete{
   background-color: gainsboro;
   color:white;
+}
+.login-box{
+  border:1px solid lightblue;
+  max-width: 600px;
+  width: 100%;
+  background-color: white;
+  padding: 20px;
+}
+.login-box label{
+  font-weight: 700;
+}
+.display-center{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.button-box{
+  display:flex;
+  justify-content: space-between
+}
+.button-primary{
+  background-color: lightblue;
+  color: #ffffff;
+  border:none;
+}
+
+.error-color {
+  color: rgb(107, 164, 195);
 }
