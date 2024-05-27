@@ -9,7 +9,6 @@ const TodoPage = () => {
   
     const getTasks = async() => {
       const response = await api.get('/tasks')
-      // console.log("rrr", response)
       setTodoList(response.data.data)
     }
   
@@ -20,7 +19,6 @@ const TodoPage = () => {
           isComplete: false
         })
         if (response.status === 200) {
-          console.log("success")
           // 입력값 안 보이게 -> 초기화, 추가값 생기게 -> getTasks() 다시 불러와.
           setTodoValue("")
           getTasks();
@@ -39,7 +37,6 @@ const TodoPage = () => {
           isComplete: !task.isComplete
         })
         if (response.status === 200) {
-          console.log("checked")
           getTasks()
         }
       } catch (err) {
@@ -53,7 +50,6 @@ const TodoPage = () => {
         })
         if (response.status === 200) {
           getTasks()
-          console.log("deleted")
         }
       } catch (err) {
         console.log("error", err)
