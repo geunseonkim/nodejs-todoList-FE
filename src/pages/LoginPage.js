@@ -40,6 +40,7 @@ const LoginPage = () => {
       const saveToken = sessionStorage.getItem("token")
       if(saveToken) {
         navigate("/")
+        sessionStorage.removeItem("token")
       }
     }, 500)
     return () => clearTimeout(userCheckTime)
