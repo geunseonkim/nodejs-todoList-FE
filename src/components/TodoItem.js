@@ -7,6 +7,7 @@ const TodoItem = ({data, checkTask, deleteTask}) => {
       <Col xs={12}>
         <div className={`todo-item ${data.isComplete? "data-complete" : ""}`}>
           <div className="todo-content">{data.task}</div>
+          <div>{`by ${data.author? data.author.name: "anonymous" }`}</div>
 
           <div>
             <button className="button-delete" onClick={()=>deleteTask(data._id)}>삭제</button>

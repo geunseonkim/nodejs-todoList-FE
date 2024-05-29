@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 import api from "../utils/api";
 
 
-const LoginPage = () => {
+const LoginPage = ({user, setUser}) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
-  // const [user, setUser] = useState(null)
   const navigate = useNavigate();
 
   const handleLogin = async(e) => {
@@ -24,7 +22,7 @@ const LoginPage = () => {
         email, password
       })
       if (response.status === 200) {
-        // setUser(response.data.user)
+        setUser(response.data.user)
         sessionStorage.setItem("token", response.data.token)
         api.defaults.headers["authorization"] = "Bearer "+response.data.token //api 헤더에 토큰값을 디폴트로 설정.
         setError("")
@@ -35,17 +33,9 @@ const LoginPage = () => {
     }
   }
 
-  useEffect(() => {
-    const userCheckTime = setTimeout(() => {
-      const saveToken = sessionStorage.getItem("token")
-      if(saveToken) {
-        navigate("/")
-        sessionStorage.removeItem("token")
-      }
-    }, 500)
-    return () => clearTimeout(userCheckTime)
-  },[])
-
+  if (user) {
+    return <Navigate to='/' />
+  }
 
   return (
     <div className="display-center">

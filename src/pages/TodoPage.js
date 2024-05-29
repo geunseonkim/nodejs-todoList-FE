@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import api from "../utils/api"
 import TodoBoard from "../components/TodoBoard";
 import {Row, Col, Container} from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-const TodoPage = () => {
+
+const TodoPage = ({user, setUser}) => {
     const [todoList, setTodoList] = useState([])
     const [todoValue, setTodoValue] = useState("")
   
     const getTasks = async() => {
       const response = await api.get('/tasks')
+      console.log("RRR", response)
       setTodoList(response.data.data)
     }
   
@@ -55,6 +58,11 @@ const TodoPage = () => {
         console.log("error", err)
       }
     }
+
+    const goToLogin = () => {
+      sessionStorage.removeItem("token")
+      setUser(null)
+    }
   
     useEffect(() => {
       getTasks()
@@ -62,6 +70,12 @@ const TodoPage = () => {
 
   return (
     <Container>
+      <Row className="mt-3">
+        <Col className="text-end">
+          <span style={{ marginRight: '10px' }}>{`Hello, ${user? user.name : "anonymous"}`}</span>
+          <span><Link to="/login" onClick={goToLogin}>로그아웃</Link></span>
+        </Col>
+      </Row>
       <Row className="add-item-row">
         <Col xs={12} sm={10}>
           <input
@@ -77,7 +91,7 @@ const TodoPage = () => {
         </Col>
       </Row>
 
-      <TodoBoard todoList = {todoList} checkTask = {checkTask} deleteTask = {deleteTask} />
+      <TodoBoard todoList = {todoList} checkTask = {checkTask} deleteTask = {deleteTask} user = {user} />
     </Container>
   );
 };
