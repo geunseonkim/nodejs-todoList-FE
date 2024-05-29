@@ -60,6 +60,8 @@ const LoginPage = ({user, setUser}) => {
           </span>
         </div>
       </Form>
+      <div>tester ID/PW</div>
+      <div>ID: jane@gmail.com / PW: jane</div>
     </div>
   );
 };
